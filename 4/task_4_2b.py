@@ -1,5 +1,5 @@
 """
-ЗЗадание 4.2b
+Задание 4.2b
 
 В этой задаче нельзя использовать условие if и нельзя изменять словарь london_co.
 
@@ -52,7 +52,5 @@ except KeyError:
 ask_param = input("Введите имя параметра ({}): ".format(','.join(list(device.keys()))))
 try:
     print(device[ask_param])
-except:
+except KeyError:
     print("Параметр не найден.")
-
-

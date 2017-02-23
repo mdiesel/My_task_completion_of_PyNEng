@@ -52,7 +52,7 @@ except KeyError:
 ask_param = input("Введите имя параметра: ")
 try:
     print(device[ask_param])
-except:
+except KeyError:
     print("Параметр не найден.")
 
 
