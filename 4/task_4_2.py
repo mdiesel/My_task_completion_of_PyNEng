@@ -48,4 +48,4 @@ ask_device = input("Введите имя устройства: ")
 try:
     print(london_co[ask_device])
 except KeyError:
-    print("Устройство не найдено")
+    print("Устройство не найдено.")
