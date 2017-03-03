@@ -12,12 +12,18 @@
  100    aabb.cc80.7000     Gi0/4
  500    aabb.cc80.7000     Gi0/5
  200    aabb.cc80.7000     Gi0/6
- 300    aabb.cc80.7000     Gi0/7
-
+ 300    aabb.cc80.7000     Gi0/7 
+'''
+'''
+Размышляем. По моему, Правильнее всего находить MAC адрес с помощью регулярных выражений.
+Но, так как мы эту тему еще не проходили, будем ориентироваться на размер.
 '''
 try:
     with open('CAM_table.txt') as f:
         for line in f:
-            print(line)
+            splited = line.split()
+            if len(splited) == 4:
+                if len(splited[1]) == 14:
+                    print('{:7}{:19}{}'.format(splited[0], splited[1], splited[3]))
 except FileNotFoundError:
     print('Файл не найден')
