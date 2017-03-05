@@ -34,15 +34,12 @@ def generate_access_config(access):
                        'spanning-tree bpduguard enable']
     result = []
     for intf in access:
-        result_line = 'interface {}\n'.format(intf)
+        result.append('interface {}'.format(intf))
         for line in access_template:
             if line.endswith('vlan'):
-                result_line += '{} {}\n'.format(line, access[intf])
+                result.append('{} {}'.format(line, access[intf]))
             else:
-                result_line += line
-                if not line.endswith('enable'):
-                    result_line += '\n'
-        result.append(result_line)
+                result.append(line)
     return result
 
 
