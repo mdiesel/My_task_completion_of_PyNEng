@@ -41,7 +41,6 @@ def get_int_vlan_map(config):
             for line in f:
                 if line.startswith('interface F'):
                     intf = line.split()[1]
-                    print(intf)
                     line = f.readline().strip()
                     if line.startswith('switchport') and line.endswith('access'):
                         line = f.readline().split()
@@ -49,7 +48,6 @@ def get_int_vlan_map(config):
                     elif line.startswith('switchport') and line.endswith('dot1q'):
                         line = f.readline().split()
                         dict_trunk[intf] = [int(i) for i in line[-1].split(',')]
-                pass
     except OSError:
         print('Не найден файл конфигурации')
         exit()
