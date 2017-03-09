@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """
 Задание 8.2
 
@@ -26,3 +24,37 @@ R6           Fa 0/2          143           R S I           2811       Fa 0/0
 Проверить работу функции на содержимом файла sw1_sh_cdp_neighbors.txt
 
 """
+
+from sys import argv
+
+def parse_cdp_neighbors(filename):
+    '''
+    Функция парсинга вывода команды show cdp neighbors
+    '''
+    result = {}
+    try:
+        with open(argv[1]) as f:
+            line = f.readline()
+            hostname = line[:line.index('>')]
+            line = f.readline()
+            start = True
+            while start:
+                line = f.readline().split()
+                if len(line) > 0:
+                    if line[0] == 'Device':
+                        start = False
+            line = f.readline().split()
+            while len(line) > 0:
+                result[(hostname, line[1] + line[2])] = (line[0], line[-2] + line[-1])
+                line = f.readline().split()
+    except OSError:
+        print('Файл {} не найден'.format(argv[1]))
+        exit()
+    return result
+
+if len(argv) != 2:
+    print('Программа ожидает на входе 1 параметр - имя файла с выводом комманды show cdp neighbors.\nНеверное число параметров.')
+    exit()
+
+print(parse_cdp_neighbors(argv[1]))
+
