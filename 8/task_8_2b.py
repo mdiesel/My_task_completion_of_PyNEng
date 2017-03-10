@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """
 Задание 8.2b
 
@@ -26,3 +24,18 @@
 
 """
 
+from task_8_2 import parse_cdp_neighbors
+from draw_network_graph import draw_topology
+
+pre_to_draw = {}
+to_draw = {}
+pre_to_draw.update(parse_cdp_neighbors('sh_cdp_n_sw1.txt'))
+pre_to_draw.update(parse_cdp_neighbors('sh_cdp_n_r1.txt'))
+pre_to_draw.update(parse_cdp_neighbors('sh_cdp_n_r2.txt'))
+pre_to_draw.update(parse_cdp_neighbors('sh_cdp_n_r3.txt'))
+
+# Удаляем дупликаты
+for key, value in pre_to_draw.items():
+    if value not in to_draw:
+        to_draw[key] = value
+draw_topology(to_draw)
