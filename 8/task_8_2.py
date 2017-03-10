@@ -35,6 +35,8 @@ def parse_cdp_neighbors(filename):
     try:
         with open(filename) as f:
             line = f.readline()
+            while line.strip() == '':
+                line = f.readline()
             hostname = line[:line.index('>')]
             line = f.readline()
             start = True
