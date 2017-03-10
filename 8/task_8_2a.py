@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """
 Задание 8.2a
 
@@ -20,4 +18,7 @@
 > pip install graphviz
 
 """
+from task_8_2 import parse_cdp_neighbors
+from draw_network_graph import draw_topology
 
+draw_topology(parse_cdp_neighbors('sw1_sh_cdp_neighbors.txt'))
