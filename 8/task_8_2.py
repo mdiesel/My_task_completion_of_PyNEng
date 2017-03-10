@@ -33,7 +33,7 @@ def parse_cdp_neighbors(filename):
     '''
     result = {}
     try:
-        with open(argv[1]) as f:
+        with open(filename) as f:
             line = f.readline()
             hostname = line[:line.index('>')]
             line = f.readline()
@@ -48,13 +48,14 @@ def parse_cdp_neighbors(filename):
                 result[(hostname, line[1] + line[2])] = (line[0], line[-2] + line[-1])
                 line = f.readline().split()
     except OSError:
-        print('Файл {} не найден'.format(argv[1]))
+        print('Файл {} не найден'.format(filename))
         exit()
     return result
 
-if len(argv) != 2:
-    print('Программа ожидает на входе 1 параметр - имя файла с выводом комманды show cdp neighbors.\nНеверное число параметров.')
-    exit()
+if __name__ == '__main__':
+    if len(argv) != 2:
+        print('Программа ожидает на входе 1 параметр - имя файла с выводом комманды show cdp neighbors.\nНеверное число параметров.')
+        exit()
 
-print(parse_cdp_neighbors(argv[1]))
+    print(parse_cdp_neighbors(argv[1]))
 
