@@ -14,3 +14,19 @@
 Проверить работу скрипта на примере вывода команды sh ip int br (файл sh_ip_int_br.txt).
 Например, попробуйте вывести информацию только по интерфейсу FastEthernet0/1.
 '''
+
+from sys import argv
+import re
+
+if len(argv) != 3:
+    print('Программа ожидает на входе два параметра:\
+ имя файла, в котором находится вывод команды show и регулярное выражение')
+
+try:
+    with open(argv[1]) as f:
+        for line in f:
+            if re.search(argv[2], line):
+                print(line.rstrip())
+except OSError:
+    print('Файл {} не найден'.format(argv[1]))
+
