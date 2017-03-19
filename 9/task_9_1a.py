@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 '''
 Задание 9.1a
 
@@ -8,3 +6,6 @@
 Проверьте регулярное выражение, используя скрипт, который был создан в задании 9.1,
 и файл sh_ip_int_br.txt.
 '''
+from task_9_1 import search_string
+
+search_string('sh_ip_int_br.txt', '0/(1|3)')
