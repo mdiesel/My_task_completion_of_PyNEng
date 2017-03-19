@@ -16,15 +16,24 @@
 from sys import argv
 import re
 
-if len(argv) != 3:
-    print('Программа ожидает на входе два параметра:\
- имя файла, в котором находится вывод команды show и регулярное выражение')
-    exit()
+def search_string(file, expr):
+    '''
+    Функция принимает имя файла и регулярное выражение,
+    выводит строки, совпадающие с регулярным выражением.
+    '''
+    try:
+        with open(file) as f:
+            for line in f:
+                if re.search(expr, line):
+                    print(line.rstrip())
+    except OSError:
+        print('Файл {} не найден'.format(argv[1]))
+        exit()
 
-try:
-    with open(argv[1]) as f:
-        for line in f:
-            if re.search(argv[2], line):
-                print(line.rstrip())
-except OSError:
-    print('Файл {} не найден'.format(argv[1]))
+if __name__ == '__main__':
+    if len(argv) != 3:
+        print('Программа ожидает на входе два параметра:\
+имя файла, в котором находится вывод команды show и регулярное выражение')
+        exit()
+
+    search_string(argv[1], argv[2])
