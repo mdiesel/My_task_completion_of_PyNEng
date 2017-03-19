@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 '''
 Задание 9.1c
 
@@ -12,4 +10,4 @@
 '''
 from task_9_1 import search_string
 
-search_string('sh_ip_int_br_switch.txt', '0/(1|3)')
+search_string('sh_ip_int_br_switch.txt', '/(1|3) ')
