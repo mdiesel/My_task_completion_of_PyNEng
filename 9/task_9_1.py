@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 '''
 Задание 9.1
 
@@ -21,6 +19,7 @@ import re
 if len(argv) != 3:
     print('Программа ожидает на входе два параметра:\
  имя файла, в котором находится вывод команды show и регулярное выражение')
+    exit()
 
 try:
     with open(argv[1]) as f:
@@ -29,4 +28,3 @@ try:
                 print(line.rstrip())
 except OSError:
     print('Файл {} не найден'.format(argv[1]))
-
